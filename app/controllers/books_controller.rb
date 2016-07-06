@@ -1,4 +1,4 @@
-class BooksController < ApplicationController
+﻿class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   # GET /books
@@ -62,10 +62,10 @@ class BooksController < ApplicationController
   end
 
   def search
-    @books = Book.where(title: params["search"]["title"])
+    @books = Book.where("title LIKE '%#{params["search"]["title"]}%'")
     @kensaku = params["search"]["title"]
     render :index
-  end
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.
