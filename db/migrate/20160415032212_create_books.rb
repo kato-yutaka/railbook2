@@ -1,4 +1,5 @@
 class CreateBooks < ActiveRecord::Migration
+
   def change
     create_table :books do |t|
       t.string :isbn
@@ -9,6 +10,7 @@ class CreateBooks < ActiveRecord::Migration
       t.boolean :cd
 
       t.timestamps null: false
+   
     end
   end
 end
