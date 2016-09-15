@@ -1,20 +1,21 @@
-class ApplicationController < ActionController::Base
+ï»¿class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :check_logined
   private
   def check_logined
-    #ƒZƒbƒVƒ‡ƒ“î•ñ:user(id’l)‚ª‘¶Ý‚·‚é‚©
-    if session[:user] then
-      #‘¶Ý‚·‚éê‡‚Íusersƒe[ƒuƒ‹‚ðŒŸõ‚µAƒ†[ƒU[î•ñ‚ðŽæ“¾
-      #begin-rescue‚Å—áŠOˆ—
+    #ã‚»ãƒƒã‚·ãƒ§ãƒ³æƒ…å ±:user(idå€¤)ãŒå­˜åœ¨ã™ã‚‹ã‹
+    if session[:usr] then
+      #å­˜åœ¨ã™ã‚‹å ´åˆã¯usersãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¤œç´¢ã—ã€ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ã‚’å–å¾—
+      #begin-rescueã§ä¾‹å¤–å‡¦ç†
       begin
-       @usr = User.find(session[:user])
+       @usr = User.find(session[:usr])
       rescue ActiveRecord::RecordNotFound
         reset_session
      end
     end
-   #ƒ†[ƒU[î•ñ‚ªŽæ“¾‚Å‚«‚È‚©‚Á‚½ê‡‚É‚ÍƒƒOƒCƒ“ƒy[ƒW(login#index)‚Ö
+   #ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ãŒå–å¾—ã§ããªã‹ã£ãŸå ´åˆã«ã¯ãƒ­ã‚°ã‚¤ãƒ³ãƒšãƒ¼ã‚¸(login#index)ã¸
    unless @usr
      flash[:referer] = request.fullpath
      redirect_to controller: :login, action: :index

@@ -1,21 +1,23 @@
-class LoginController < ApplicationController
+ï»¿class LoginController < ApplicationController
   skip_before_action :check_logined
+
   def index
   end
 
   def auth
-  #“ü—Í’l‚ªƒ†[ƒU[î•ñ‚É‘¶Ý‚·‚é‚©‚Ç‚¤‚©”FØ‚·‚é
-@##‘¶Ý‚·‚ê‚ÎA‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg
-  ##‘¶Ý‚µ‚È‚¯‚ê‚Înil
-  user = User.authenticate(params[params[:userid],params[:password])
+  #å…¥åŠ›å€¤ãŒãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ã«å­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹èªè¨¼ã™ã‚‹
+  ##å­˜åœ¨ã—ãªã‘ã‚Œã°nil
+  usr = User.authenticate(params[:userid],params[:password])
   if usr then
-  #ƒZƒbƒVƒ‡ƒ“‚Ì‰Šú‰»
+  #ã‚»ãƒƒã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
   reset_session
-  #ƒZƒbƒVƒ‡ƒ“‚É‘ÎÛ‚Ìƒ†[ƒU[‚ÌID‚ð•Û‘¶
-@redirect_to params[:referer]
+  #ã‚»ãƒƒã‚·ãƒ§ãƒ³ã«å¯¾è±¡ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®IDã‚’ä¿å­˜
+  session[:usr] = usr.id
+  redirect_to params[:referer]
  else
   flash.now[:referer] = params[:referer]
-  @error = 'ƒ†[ƒU[ID/ƒpƒXƒ[ƒh‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·B'
+  @error = 'ãƒ¦ãƒ¼ã‚¶ãƒ¼ID/ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé–“é•ã£ã¦ã„ã¾ã™ã€‚'
   render 'index'
   end
+end
 end
