@@ -8,12 +8,20 @@
 </head>
 <body>
 <%= image_tag "railbook.png" %>
+
 <Ul>
  <li><%= link_to "書籍一覧"    ,books_path%></li>
  <li><%= link_to "出版社一覧"  ,publishes_path%></li>
  <li><%= link_to "レビュー一覧",reviews_path%></li>
  <li><%= link_to "ユーザー一覧",users_path%></li>
 </Ul>
+
+<div align="right"> ログインユーザー:<%= session[:loger] %> |
+ <%= link_to "ログアウト" , login_index_path %>
+ </div>
+
+</head>
+<body>
 <%= yield %>
 
 </body>

@@ -2,6 +2,7 @@
   skip_before_action :check_logined
 
   def index
+  render :index,layout: false
   end
 
   def auth
@@ -13,7 +14,8 @@
   reset_session
   #セッションに対象のユーザーのIDを保存
   session[:usr] = usr.id
-  redirect_to params[:referer]
+  session[:loger] = usr.userid
+  redirect_to books_path
  else
   flash.now[:referer] = params[:referer]
   @error = 'ユーザーID/パスワードが間違っています。'
